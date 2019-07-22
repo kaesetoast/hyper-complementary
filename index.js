@@ -2,7 +2,7 @@ const overlap = '#1C3443';
 
 exports.decorateConfig = config =>
 	Object.assign({}, config, {
-		backgroundColor: '#0B273A',
+		backgroundColor: 'rgba(11, 39, 58, .95)',
 		foregroundColor: '#fff',
 		borderColor: '#0B4263',
 		cursorColor: '#FFE50A',
