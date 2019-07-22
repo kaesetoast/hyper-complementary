@@ -1,97 +1,69 @@
-const foregroundColor = '#fff';
-const backgroundColor = 'rgba(11, 39, 58, .8)';
-const overlap = 'rgba(11, 39, 58, .15)';
-const red = '#A22929';
-const green = '#4CD964';
-const yellow = '#FFE50A';
-const blue = '#027dff';
-const magenta = '#FF2D55';
-const cyan = '#5AC8FA';
-const white = '#FFFFFF';
-const defaultConfig = {
-	fontFamily: '"Fira Code", "Monaco", "Inconsolata", "Fira Mono", "Droid Sans Mono", "Source Code Pro", monospace',
-	fontSize: 16,
-	foregroundColor,
-	backgroundColor,
-	borderColor: overlap,
-	cursorColor: yellow,
-	minimal: false,
-	colors: {
-		black: backgroundColor,
-		red,
-		green,
-		yellow,
-		blue,
-		magenta,
-		cyan,
-		white,
-		lightBlack: '#686868',
-		lightRed: red,
-		lightGreen: green,
-		lightYellow: yellow,
-		lightBlue: blue,
-		lightMagenta: magenta,
-		lightCyan: cyan,
-		lightWhite: foregroundColor,
-	},
-};
+const overlap = '#1C3443';
 
-// Check if Verminal configuration exists in ~/.hyper.js. If not, fall back to default configuration.
-const checkConfig = (config, setting) =>
-	(config.hasOwnProperty('verminal') && config.verminal[setting]) || defaultConfig[setting];
-const checkConfigColor = (config, colorName) =>
-	(config.hasOwnProperty('verminal') && config.verminal.colors && config.verminal.colors[colorName]) ||
-	defaultConfig.colors[colorName];
-// Setup vibrancy
-exports.onWindow = browserWindow => browserWindow.setVibrancy('ultra-dark');
-
-// Setup configs
 exports.decorateConfig = config =>
 	Object.assign({}, config, {
-		fontFamily: checkConfig(config, 'fontFamily'),
-		fontSize: checkConfig(config, 'fontSize'),
-		fontWeight: checkConfig(config, 'fontWeight'),
-		fontWeightBold: checkConfig(config, 'fontWeightBold'),
-		backgroundColor: checkConfig(config, 'backgroundColor'),
-		foregroundColor: checkConfig(config, 'foregroundColor'),
-		borderColor: checkConfig(config, 'borderColor'),
-		cursorColor: checkConfig(config, 'cursorColor'),
-		minimal: checkConfig(config, 'minimal'),
+		backgroundColor: '#0B273A',
+		foregroundColor: '#fff',
+		borderColor: '#0B4263',
+		cursorColor: '#FFE50A',
+		cursorBlink: true,
+		cursorAccentColor: '#ffffff',
+		fontSize: 16,
+		lineHeight: 1.2,
+		fontFamily:
+			'"Fira Code", "Monaco", "Inconsolata", "Fira Mono", "Droid Sans Mono", "Source Code Pro", monospace',
+		selectionColor: 'rgba(248, 28, 229, 0.3)',
 		colors: {
-			black: checkConfigColor(config, 'black'),
-			red: checkConfigColor(config, 'red'),
-			green: checkConfigColor(config, 'green'),
-			yellow: checkConfigColor(config, 'yellow'),
-			blue: checkConfigColor(config, 'blue'),
-			magenta: checkConfigColor(config, 'magenta'),
-			cyan: checkConfigColor(config, 'cyan'),
-			white: checkConfigColor(config, 'white'),
-			lightBlack: checkConfigColor(config, 'lightBlack'),
-			lightRed: checkConfigColor(config, 'lightRed'),
-			lightGreen: checkConfigColor(config, 'lightGreen'),
-			lightYellow: checkConfigColor(config, 'lightYellow'),
-			lightBlue: checkConfigColor(config, 'lightBlue'),
-			lightMagenta: checkConfigColor(config, 'lightMagenta'),
-			lightCyan: checkConfigColor(config, 'lightCyan'),
-			lightWhite: checkConfigColor(config, 'lightWhite'),
+			black: '#0B273A',
+			red: '#A22929',
+			green: '#22da6e',
+			yellow: '#FFE50A',
+			blue: '#027dff',
+			magenta: '#c792ea',
+			cyan: '#21c7a8',
+			white: '#ffffff',
+			lightBlack: '#575656',
+			lightRed: '#A22929',
+			lightGreen: '#22da6e',
+			lightYellow: '#ffeb95',
+			lightBlue: '#027dff',
+			lightMagenta: '#c792ea',
+			lightCyan: '#7fdbca',
+			lightWhite: '#ffffff',
 		},
 		css: `
+    ${config.css}
     .hyper_main {
       border: none !important;
     }
-
     .header_header {
-      background-color: ${config && config.verminal && config.verminal.minimal ? 'transparent' : overlap} !important;
+      background-color: ${overlap} !important;
     }
-
     .tabs_borderShim {
       border-color: transparent !important;
     }
     .tab_tab {
       border: 0;
+      background-color: #010e1a;
+      color: #5f7e97;
+    }
+    .tab_tab::before {
+      background-color: #272B3B;
+    }
+    .tab_active {
+      background-color: #0b2942;
+      color: #d2dee7;
+    }
+    .tab_active::before {
+      background-color: #262A39;
+    }
+    .tab_text {
+      background-color: #010e1a;
+      color: #5f7e97;
     }
     .tab_textActive {
-      background: rgba(255, 255, 255, .05);
+      background-color: #0b2942;
+      color: #d2dee7;
     }
     .hyper-search-wrapper {
         border: 0 !important;
@@ -111,7 +83,7 @@ exports.decorateConfig = config =>
     }
     .hyper-search-wrapper button:nth-of-type(1) {
       border-radius: 4px 0 0 4px !important;
-      border-right: 1px solid #ddd !important;
+      border-right: 1px solid #575656 !important;
     }
     .hyper-search-wrapper button:nth-of-type(2) {
       border-radius: 0 4px 4px 0 !important;
@@ -126,11 +98,11 @@ exports.decorateConfig = config =>
       z-index: 999;
     }
     #hyper-search-input {
-      background-color: #fff !important;
+      background-color: #ffffff !important;
       border-radius: 4px;
       box-shadow: 0 1px 10px rgba(0, 0, 0, 0.5);
       padding: 3px 6px 3px 24px !important;
-      color: #000 !important;
+      color: #0B273A !important;
       opacity: 0.9 !important;
       margin-right: 2px;
     }
@@ -138,7 +110,5 @@ exports.decorateConfig = config =>
       opacity: 1.0 !important;
       box-shadow: 0 1px 10px rgba(0, 0, 0, 1.0);
     }
-
-    ${config.css}
   `,
 	});
