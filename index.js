@@ -1,6 +1,6 @@
 const foregroundColor = '#fff';
-const backgroundColor = 'rgba(13, 35, 51, .65)';
-const overlap = 'rgba(13, 35, 51, .15)';
+const backgroundColor = 'rgba(11, 39, 58, .8)';
+const overlap = 'rgba(11, 39, 58, .15)';
 const red = '#A22929';
 const green = '#4CD964';
 const yellow = '#FFE50A';
